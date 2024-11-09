@@ -7,9 +7,11 @@ import CurrentView from './Views/CurrentView';
 import HourlyView from './Views/HourlyView';
 import DailyView from './Views/DailyView';
 
-const currentWeatherURL = `http://localhost:8080/currentWeather`;
-const forecastDailyURL = `http://localhost:8080/forecastDaily`;
-const forecastHourlyURL = `http://localhost:8080/forecastHourly`;
+const location =  `lat=51.32&long=0.88`
+
+const currentWeatherURL = `http://localhost:8080/currentWeather?`;
+const forecastDailyURL = `http://localhost:8080/forecastDaily?`;
+const forecastHourlyURL = `http://localhost:8080/forecastHourly?`;
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -21,7 +23,7 @@ function App() {
     const urls = [currentWeatherURL, forecastDailyURL, forecastHourlyURL]
 
     Promise.all(urls.map(url => 
-      fetch(url).then(res => res.json())
+      fetch(url + location).then(res => res.json())
   ))
   .then((data) => {
     console.log(data)
